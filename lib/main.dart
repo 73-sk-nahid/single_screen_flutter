@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:single_screen/home.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      //theme: ThemeData(fontFamily: 'Poppins'),
       home: HomePage()
     );
   }
