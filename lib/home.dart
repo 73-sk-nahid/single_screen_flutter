@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
                 BoxShadow(
                   color: Color(0xff1D1617).withOpacity(0.11),
                   blurRadius: 40,
-                  spreadRadius: 0.8
+                  spreadRadius: 0.0
                 )
               ]
             ),
@@ -29,9 +29,22 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(12),
                   child: SvgPicture.asset('assets/icons/Search.svg'),
                 ),
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: SvgPicture.asset('assets/icons/Filter.svg'),
+                suffixIcon: IntrinsicHeight(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      VerticalDivider(
+                        color: Colors.black,
+                        indent: 10,
+                        endIndent: 10,
+                        thickness: 0.1,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: SvgPicture.asset('assets/icons/Filter.svg'),
+                      ),
+                    ],
+                  ),
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
