@@ -29,11 +29,11 @@ class HomePage extends StatelessWidget {
               Container(
                 height: 150,
                 color: Colors.black,
-                child: ListView.builder(
+                /*child: ListView.builder(
                     itemBuilder: (context, index) {
                       return Container();
                     }
-              )
+              )*/
               ),
             ],
           )
