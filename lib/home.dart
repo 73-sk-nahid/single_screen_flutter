@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'models/category_model.dart';
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+  List<CategoryModel> categories = [];
+
+  void _getcategories(){
+    categories = CategoryModel.getCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
+    _getcategories();
     return Scaffold(
       appBar: appBar(),
       backgroundColor: Colors.white,
@@ -27,13 +34,48 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 15,),
               Container(
-                height: 150,
-                color: Colors.black,
-                /*child: ListView.builder(
+                height: 120,
+                //color: Colors.black,
+                child: ListView.separated(
+                  itemCount: categories.length,
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(left: 20, right: 20),
+                    separatorBuilder: (context, index) => SizedBox(width: 25,),
                     itemBuilder: (context, index) {
-                      return Container();
+                      return Container(
+                        width: 100,
+                        decoration: BoxDecoration(
+                          color: categories[index].boxColor.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SvgPicture.asset(categories[index].iconPath),
+                              ),
+                            ),
+                            Text(
+                              categories[index].name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
                     }
-              )*/
+              )
               ),
             ],
           )
