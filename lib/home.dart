@@ -55,9 +55,10 @@ class HomePage extends StatelessWidget {
                 child: ListView.separated(
                     itemCount: diets.length,
                     scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(left: 20, right: 20),
                     separatorBuilder: (context, index) => SizedBox(
-                      width: 25,
-                    ),
+                          width: 25,
+                        ),
                     itemBuilder: (context, index) {
                       return Container(
                         width: 210,
@@ -65,37 +66,49 @@ class HomePage extends StatelessWidget {
                             color: diets[index].boxColor.withOpacity(0.3),
                             borderRadius: BorderRadius.circular(20)),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SvgPicture.asset(diets[index].iconPath),
-                            Text(
-                              diets[index].name,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
-                                  fontSize: 16),
-                            ),
-                            Text(
-                              diets[index].level +
-                                  ' | ' +
-                                  diets[index].duration +
-                                  ' | ' +
-                                  diets[index].calorie,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xff7B6F72),
-                                  fontSize: 13),
+                            Column(
+                              children: [
+                                Text(
+                                  diets[index].name,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black,
+                                      fontSize: 16),
+                                ),
+                                Text(
+                                  diets[index].level +
+                                      ' | ' +
+                                      diets[index].duration +
+                                      ' | ' +
+                                      diets[index].calorie,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      color: Color(0xff7B6F72),
+                                      fontSize: 13),
+                                ),
+                              ],
                             ),
                             Container(
                               height: 45,
                               width: 130,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        Color(0xff9DCEFF),
-                                        Color(0xff92A3FD)
-                                      ]
-                                  )
+                              child: Center(
+                                child: Text(
+                                  'View',
+                                  style: TextStyle(
+                                      color: diets[index].viewIsSelected ? Colors.white: Color(0xffc5BBF2),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14),
+                                ),
                               ),
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(colors: [
+                                    diets[index].viewIsSelected ? Color(0xff9DCEFF): Colors.transparent,
+                                    diets[index].viewIsSelected ? Color(0xff92A3FD): Colors.transparent
+                                  ]),
+                                  borderRadius: BorderRadius.circular(50)),
                             )
                           ],
                         ),
@@ -132,8 +145,8 @@ class HomePage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 padding: EdgeInsets.only(left: 20, right: 20),
                 separatorBuilder: (context, index) => SizedBox(
-                  width: 25,
-                ),
+                      width: 25,
+                    ),
                 itemBuilder: (context, index) {
                   return Container(
                     width: 100,
