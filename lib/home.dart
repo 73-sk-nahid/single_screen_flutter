@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'models/category_model.dart';
+import 'models/diet_model.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   List<CategoryModel> categories = [];
+  List < DietModel > diets = [];
 
   void _getcategories() {
     categories = CategoryModel.getCategories();
+  }
+  void _getDiets() {
+    diets = DietModel.getDiets();
   }
 
   @override
   Widget build(BuildContext context) {
     _getcategories();
+    _getDiets();
     return Scaffold(
       appBar: appBar(),
       backgroundColor: Colors.white,
@@ -29,9 +35,50 @@ class HomePage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  "Recommendation \n for diet",
+                  "Recommendation \nfor diet",
                   style: TextStyle(
                       color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+              ),
+              SizedBox(height: 15,),
+              Container(
+                height: 240,
+                child: ListView.separated(
+                  itemCount: diets.length,
+                    scrollDirection: Axis.horizontal,
+                    separatorBuilder: (context, index) => SizedBox(
+                      width: 25,
+                    ),
+                    itemBuilder: (context, index){
+                      return Container(
+                        width: 210,
+                        decoration: BoxDecoration(
+                          color: diets[index].boxColor.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(20)
+                        ),
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(diets[index].iconPath),
+                            Text(
+                              diets[index].name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                                fontSize: 16
+                              ),
+                            ),
+                            Text(
+                              diets[index].level+ ' | ' + diets[index].duration+ ' | '+ diets[index].calorie,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xff7B6F72),
+                                  fontSize: 13
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
                 ),
               )
             ],
