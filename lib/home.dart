@@ -74,6 +74,18 @@ class HomePage extends StatelessWidget {
                                   color: Color(0xff7B6F72),
                                   fontSize: 13
                               ),
+                            ),
+                            Container(
+                              height: 45,
+                              width: 130,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0xff9DCEFF),
+                                    Color(0xff92A3FD)
+                                  ]
+                                )
+                              ),
                             )
                           ],
                         ),
